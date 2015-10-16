@@ -1,0 +1,9 @@
+{
+"Name"        : "Brief im Modern-CV Stil",
+"Description" : "DIN-Brief der im Stil Modern-CV angelehnt ist.",
+"Author"      : "Joerg Desch <kontakt@jdesch.de>",
+"Date"        : "8.10.2015",
+"Version"     : "1.0",
+"License"     : "CC-BY (http://creativecommons.org/licenses/by/4.0/)",
+"FilesToOpen" : "brief.tex"
+}

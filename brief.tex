@@ -1,0 +1,49 @@
+%% LaTeX Briefvorlage mit modern-cv Stil
+%%
+%% Hinweise:
+%%   * es können mehrere Umgebungen {letter} für mehrere Briefe genutzt werden.
+%%   * innerhalb des Adressats ist \textbf{} und \emph{} erlaubt.
+%%   * mit \selectlanguage{english} / \selectlanguage{ngerman} kann zwischen
+%%     \opening und \closing die Sprache umgeschaltet werden.
+%%   * eventuell \setkomavar{location}{\raggedleft{}Kundennummer: 12345678 \\}
+%%     um Kundennummern oder Ref.nummer auf Schreiben...
+%% -------------------------------------------------------------------------------
+
+\documentclass[absender]{scrlttr2}
+
+
+\begin{document}
+
+%% optional: Anlagentext ändern (Doppelpunkt wird automatisch gesetzt)
+%\setkomavar*{enclseparator}{Anlage}
+
+%% Betreff
+\setkomavar{subject}{Betreff: der Stein ist sehr groß}
+%% optional: Datum vorgeben (sonst heutiges Datum)
+%\setkomavar{date}{den 09. Januar 2013}
+%% optional: Ort des Schreibens vorgeben (sonst Ort aus Absender)
+%\setkomavar{place}{Breitburg}
+%% optional: Kundennummer oder Ref.ID eines Schreibens
+%\setkomavar{location}{\raggedleft{}\footnotesize{}Kundennummer: 12345678 \\}
+
+
+% Definiere Brief und Empfaenger 1:
+\begin{letter}{
+    Herr Flitzpipe\\
+    Pipen GmbH\\
+    Musterstr. 1\\
+    12345 Musterhausen
+}
+\opening{Sehr geehrter Herr Flitzpipe,}
+
+hier geht dann das eigenliche Schreiben los.
+
+Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien leben die Blindtexte. Abgeschieden wohnen sie in Buchstabhausen an der Küste des Semantik, eines großen Sprachozeans. Ein kleines Bächlein namens Duden fließt durch ihren Ort und versorgt sie mit den nötigen Regelialien. Es ist ein paradiesmatisches Land, in dem einem gebratene Satzteile in den Mund fliegen.
+
+Nicht einmal von der allmächtigen Interpunktion werden die Blindtexte beherrscht – ein geradezu unorthographisches Leben. Eines Tages aber beschloß eine kleine Zeile Blindtext, ihr Name war Lorem Ipsum, hinaus zu gehen in die weite Grammatik.
+
+\closing{Mit freundlichen Grüßen,}
+\encl{Staubsauger}
+\end{letter}
+\end{document}
+

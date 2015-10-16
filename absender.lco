@@ -1,0 +1,129 @@
+%% Konfiguration der persönlichen Daten (bitte anpassen) und des Layouts des Briefes (fix).
+%%
+%% Hinweise:
+%%   * wenn der Titel mit dem Namen zu lang wird, dann kann man die Schriftgröße von
+%%     \fontsize{38}{40} auf \fontsize{32}{34} reduzieren.
+%%   * eventuell \setkomavar{location}{\raggedleft{}Kundennummer: 12345678 \\} um 
+%%     Kundennummern oder Referenznummer zu integrieren.
+%%
+\ProvidesFile{absender.lco}[letter-class-option file]
+\RequirePackage[english,ngerman]{babel}
+\RequirePackage[utf8]{inputenc}			% Der Text in dieser Datei (absender.lco) ist UTF-8 enkodiert
+\RequirePackage{marvosym}			% Symbole: Handy, Telefon, E-Mail
+\RequirePackage{dejavu}				% die Wunschschrift
+\renewcommand*\familydefault{\sfdefault}	% sorgt für serifenlose Schrift (auch wie bei Lebenslauf)
+\RequirePackage{microtype}			% optional, aber schöner
+\RequirePackage{ellipsis}			% optional, aber schöner
+\RequirePackage{xcolor}				% Farben für eigenes Layout
+%\RequirePackage{changepage}			% optional: Seitenlayout anpassen
+\LoadLetterOption{DIN}				% Einstellungen für DIN 676 laden
+\renewcommand*{\raggedsignature}{\raggedright}	% Signatur wird bündig gesetzt; muss auch nicht sein..
+%
+\KOMAoptions{
+    DIV=13,
+    BCOR=0mm,
+    paper=a4,
+    foldmarks=true,
+    fromalign=right,
+    fromrule=aftername,
+    footsepline=off,
+    fromurl=true,
+    fromemail=true,
+    fromfax=true,
+    fromphone=true,
+    headsepline=true,				% Trennlinie unter Kopf auf Folgeseite
+    parskip=half				% für Abstand zw. Absätzen statt Einrückung
+}
+%
+%---------------------------------------------------------------------------
+% PERSÖNLICHE DATEN
+%
+% Die folgenden Felder sind anzupassen. EMail und Telefon sind optional, genauso
+% wie Mobilefone und Telefax.
+%=========================================================
+%\newcommand{\myTitel}{Dipl\@.-Ing\@.}
+\newcommand{\myVorname}{Max}
+\newcommand{\myNachname}{Mustermann}
+\newcommand{\myStrasse}{Musterstraße~1}
+\newcommand{\myStadt}{Musterhausen}
+\newcommand{\myPLZ}{11111}
+\newcommand{\myEMail}{max@mustermann.net}
+\newcommand{\myTelefon}{+49~(0)1234~567890}
+%\newcommand{\myMobilefone}{+49~(0)1234~567890}		% NEED MOBILE? UNCOMMENT
+%\newcommand{\myTelefax}{+49~(0)1234~567890}		% NEED FAX? UNCOMMENT
+%=========================================================
+%
+%---------------------------------------------------------------------------
+% FARBEN
+%=========================================================
+\definecolor{myColorRegular}{rgb}{0,0,0}		% Schwarz (normale Schrift)
+\definecolor{myColorMore}{rgb}{0.45,0.45,0.45}		% wichtige Teile des Kopfes
+\definecolor{myColorLess}{rgb}{0.68,0.68,0.68}		% weniger wichtige Teile des Kopfes
+%=========================================================
+%
+%---------------------------------------------------------------------------
+% ABSENDER (aus den persönlichen Daten generiert)
+%
+\setkomavar{fromname}{\myVorname{}~\myNachname{}}
+\setkomavar{fromaddress}{\myStrasse{}\\{}\myPLZ{}~\myStadt{}}
+\ifx\myTelefon\undefined\else
+  \setkomavar{fromphone}{\myTelefon{}}
+\fi
+\ifx\myTelefax\undefined\else
+  \setkomavar{fromfax}{\myTelefax{}}
+\fi
+\ifx\myEMail\undefined\else
+  \setkomavar{fromemail}{\myEMail{}}
+\fi
+\setkomavar{place}{\myStadt{}}
+\ifx\myTitel\undefined
+  \setkomavar{signature}{\myVorname{}~\myNachname{}}
+\else
+  \setkomavar{signature}{\myTitel{}~\myVorname{}~\myNachname{}}
+\fi
+\setkomavar{date}{\today}
+%
+%---------------------------------------------------------------------------
+% BRIEFKOPF DES DECKBLATTs nach "moderncv"
+%
+\setkomavar{firsthead}{
+     %-Title und Name mit Trennlinie
+     \begin{flushright}
+     {\fontsize{38}{40}\selectfont                % Schriftgröße für Namen
+     \color{myColorLess}
+     {\ifx\myTitel\undefined\else\myTitel\ \fi\myVorname}
+     \color{myColorMore}\myNachname}\\[-.35em]
+     {\color{myColorLess}\rule{\textwidth}{.25ex}}
+     \end{flushright}
+     %-und die Adressdaten unterhalb
+     \vspace{-0.2cm}                               % Daten werden nach oben verschoben
+     \begin{flushright}
+     \color{myColorMore}
+     \myStrasse{},~\myPLZ{}~\myStadt{}\\
+     \ifx\myTelefon\undefined\else
+       \Telefon~\myTelefon{}\\
+     \fi
+     \ifx\myMobilefone\undefined\else
+        \Mobilefone~\myMobilefone{}\\
+     \fi
+     \ifx\mTelefax\undefined\else
+        \FAX~\mTelefax{}\\
+     \fi
+     \ifx\myEMail\undefined\else
+       \Letter~\myEMail{}
+     \fi
+     \color{myColorRegular}
+     \end{flushright}
+%----------------------------------------------------
+  }
+%
+%---------------------------------------------------------------------------
+% Seitenlayout anpassen:
+%
+%%\changepage{text height}{text width}{even-side margin}{odd-side margin}{column sep.}{topmargin}{headheight}{headsep}{footskip}
+%\changepage{+3cm}{}{}{}{}{}{}{}{-5cm}
+%
+\pagestyle{headings}
+%
+\endinput
+
